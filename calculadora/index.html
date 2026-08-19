@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+content="width=device-width,initial-scale=1.0">
+    <title>calculadora</title>
+
+    <!--O CSS (Estilo) vai aqui dentro-->
+    <style>
+        body {
+              background-color: #f1f1f5;ns-serif;
+              display: flex;
+              flex-direction:column;
+              font-family: sans-serif;
+              justify-content: center;
+              align-items: center;
+              height: 100vh;
+              margin: 0;
+        }
+        .calculadora {
+            background-color: #b7c9dd;
+            padding: 15px;
+            border-radius: 20px;
+            box-shadow: 0px 10px 25px rgb(131, 214, 240).0.5;
+            width: 280px;
+        }
+        #display{
+            background-color:#2d2f30;
+            color: #f7f2f2;
+            font-size: 2rem;
+            text-align: right;
+            padding: 8px 20px;
+            border-radius: 8px;
+            margin:0 auto 15px auto;
+            min-height: 45px;
+            width: 100%;
+            box-sizing: border-box;
+            font-family: monospace;
+
+        }
+        .botões{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 12px;
+        }
+        .botões button:last-child {
+            grid-column:span 4;
+        }
+        .botões button:hover {
+            transform: scale(1.05);
+            cursor: pointer;
+        }
+
+        button{
+            font-size: 1.3rem;
+            height: 40px;
+            border: none;
+            border-radius: 10px;
+            background-color: #4a4a4a;
+            color: #f2f5fa;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        button:hover{background: color #666;
+        }
+        .operador{
+            background-color: #f1a33c;
+        }
+        .operador:hover{
+            background-color: #ffb85c;
+        }
+        .igual{
+            background-color: #25a15c;
+            grid-column:span 2;
+        }
+        .igual:hover{
+           background-color: #32c073;
+        }
+    </style>
+</head>
+<body>
+    
+       <!--A estrutura da calculadora-->
+       <h1>🧮Minha calculadora</h1>
+
+       <div class="calculadora">
+
+       <!--visor da calculadora-->
+       <div id="display">0</div>
+       <!--Grade de botões-->
+       <div class="botões">
+            
+          <!--Linha 1 -->
+            <button onclick="apagar()">←</button>
+            <button onclick="adicionar(7)">7</button>
+            <button onclick="adicionar(8)">8</button>
+            <button onclick="adicionar(9)">9</button>
+            <button onclick="adicionar('/')">÷</button>
+    
+         <!--Linha 2 -->
+            <button onclick="adicionar(4)">4</button>
+            <button onclick="adicionar(5)">5</button>
+            <button onclick="adicionar(6)">6</button>
+             <button onclick="adicionar('*')">×</button>
+
+         <!--Linha 3 -->
+            <button onclick="adicionar(1)">1</button>
+            <button onclick="adicionar(2)">2</button>
+            <button onclick="adicionar(3)">3</button>
+            <button onclick="adicionar('-')">-</button>
+
+
+         <!--Linha 4 -->
+            <button onclick="adicionar(0)">0</button>
+            <button onclick="adicionar('.')">.</button>
+            <button onclick="limparVisor()">C</button>
+            <button onclick="adicionar('+')">+</button>
+
+         <!--Linha 5 -->
+            <button onclick="calcular()">=</button>
+        </div>
+       </div>
+
+    <script>let visor= 
+    document.getElementById("display");
+    
+    function adicionar(numero) {
+        if (visor.textContent==="0") {
+            visor.textContent= numero;
+        } else {
+            visor.textContent+= numero;
+        }
+    }
+    function calcular ( ){
+        let conta=visor.textContent;
+        let resultado=eval(conta);
+        visor.textContent=resultado;
+    }
+    function limparVisor(){
+        visor.textContent="0";
+    }
+    function porcentagem( ){
+        let conta= visor.textContent;
+
+        if(conta !=="0" && conta !==""){
+          visor.textContent= eval(conta) / 100;
+
+        }
+    }
+    function apagar( ) {
+        visor.textContent=
+     visor.textContent.slice(0,-1);
+      if(visor.textContent==="") {
+        visor.textContent="0";
+      }
+
+    }
+    </script>
+</body>
+</html>
